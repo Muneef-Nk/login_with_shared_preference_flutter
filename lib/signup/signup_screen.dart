@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../home/home_screen.dart';
 import '../login/login_screeen.dart';
 import '../utils/color_constants.dart';
-
 class SignUpScreen extends StatelessWidget {
    SignUpScreen({super.key});
 
@@ -137,6 +136,7 @@ class SignUpScreen extends StatelessWidget {
      SharedPreferences prefs = await SharedPreferences.getInstance();
      prefs.setString('username', name);
      prefs.setString('password', password);
+     prefs.setBool("isKeepLogin", true);
 
   }
 

@@ -21,8 +21,8 @@ class Home extends StatelessWidget {
                   )
               ),
               onPressed: ()async{
-            //SharedPreferences prefs = await SharedPreferences.getInstance();
-             //prefs.clear();
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+             prefs.setBool('isKeepLogin', false);
             Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>LoginScreen()), (route) => false);
                }, child: Text("Logout"),
             ),

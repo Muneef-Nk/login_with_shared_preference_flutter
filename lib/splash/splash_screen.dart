@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login/home/home_screen.dart';
+import 'package:login/login/login_screeen.dart';
 import 'package:login/welcome_screen.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,10 +19,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(Duration(seconds: 4)).then((value)async {
       SharedPreferences prefs =await SharedPreferences.getInstance();
-      prefs.getString('username')!=null && prefs.getString('password')!=null?
-          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Home()))
-      :          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>WelcomeScreen()));
-
+      prefs.getBool('isKeepLogin')==true?
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Home()))
+          :Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>WelcomeScreen()));
     });
     super.initState();
   }
