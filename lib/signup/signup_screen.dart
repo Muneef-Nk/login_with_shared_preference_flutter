@@ -86,9 +86,13 @@ class SignUpScreen extends StatelessWidget {
                       SizedBox(height: 30,),
                       InkWell(
                         onTap: (){
-                          print("clicked");
-                          setdata();
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Home()));
+                          setdata(
+                            userController.text,
+                            passwordController.text
+                          );
+                          print("value stored");
+
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Home()));
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.9,
@@ -129,10 +133,10 @@ class SignUpScreen extends StatelessWidget {
       ),
     );
   }
-  Future<void> setdata()async{
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('username', userController.text.toString());
-    await prefs.setString('password', passwordController.text.toString());
+  Future<void> setdata(String name, String password)async{
+     SharedPreferences prefs = await SharedPreferences.getInstance();
+     prefs.setString('username', name);
+     prefs.setString('password', password);
 
   }
 

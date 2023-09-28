@@ -30,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
             ),
             GestureDetector(
               onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LoginScreen()));
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LoginScreen()));
               },
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.9,
@@ -53,7 +53,7 @@ class WelcomeScreen extends StatelessWidget {
             ),
         GestureDetector(
           onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SignUpScreen()));
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SignUpScreen()));
           },
           child: Container(
             width: MediaQuery.of(context).size.width * 0.9,

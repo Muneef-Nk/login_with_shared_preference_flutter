@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/home/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../signup/signup_screen.dart';
@@ -12,9 +13,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController _userController=TextEditingController();
 
-  TextEditingController _passwordController=TextEditingController();
+
+  TextEditingController userController=TextEditingController();
+  TextEditingController passwordController=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                crossAxisAlignment: CrossAxisAlignment.end,
                children: [
                  TextFormField(
-                   controller: _userController,
+                   controller: userController,
                    decoration: InputDecoration(
                      label: Text("Username", style: TextStyle(fontWeight: FontWeight.bold, color: red),),
                      suffixIcon: Icon(Icons.check),
@@ -58,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                  ),
                  SizedBox(height: 20,),
                  TextFormField(
-                   controller: _passwordController,
+                   controller: passwordController,
                    decoration: InputDecoration(
                      label: Text("Password", style: TextStyle(fontWeight: FontWeight.bold, color: red),),
                      suffixIcon: Icon(Icons.visibility_off),
@@ -71,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                  SizedBox(height: 30,),
                  InkWell(
                    onTap: (){
-                     getData();
+                     checkLogin(userController.text, passwordController.text);
                    },
                    child: Container(
                      width: MediaQuery.of(context).size.width * 0.9,
@@ -113,38 +115,16 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Future<void> getData()async{
+  Future<void> checkLogin(String name, String password)async{
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      String username =  prefs.getString('username')!;
-      String password =  prefs.getString('password')!;
-
-
-      String inputUsername = _userController.text;
-      String inputPassword = _passwordController.text;
-
-      print(username);
-      print(password);
-
-      if(username==inputUsername && password==inputPassword){
-        print("login succeess");
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SignUpScreen()));
-
-      }else{
-        print("invalid ");
-      }
-
-
-
-
-
-
+    if(prefs.getString('username')==name && prefs.getString('password')==password){
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Home()));
+    }else{
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LoginScreen()));
+    }
 
 
   }
 
-  // void checkLogin(){
-  //   String inputUsername = _userController.text;
-  //   String inputPassword = _passwordController.text;
-  // }
 }

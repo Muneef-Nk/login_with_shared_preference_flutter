@@ -64,6 +64,8 @@ flutter:
   assets:
      - assets/lottie/welcome.json
      - assets/icons/
+     - assets/lottie/animation_ln2xkajo.json
+     - assets/lottie/animation_ln2xqdfi.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
